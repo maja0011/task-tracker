@@ -47,7 +47,7 @@ function Main() {
     }, [tasks]);
 
     return (
-        <div clasName="container">
+        <div className="container">
             <header className="header">
                 <h1>Task Tracker</h1>
                 <button className="btn"
