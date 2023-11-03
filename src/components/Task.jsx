@@ -13,8 +13,13 @@ const Task = ({task, handleDelete}) => {
         />
     </h3>
     <p>Task Description: {task.description}</p>
-    <p>Task Estimation Date: {task. estimationDate}</p>
+    <p>Task Estimation Date: {task.estimationDate}</p>
     <p>Task Start Date: {task.startDate}</p>
+    <p>Task Actual Completion Date: {!task.completionDate ? "Completion Date not selected" : task.completionDate}</p>
+    <p>Task Estimate to Completion: {task.estimateToCompletion} days</p>
+    <p>Task Actual Completion: {!task.actualCompletion ? "No completion Date given" : `${task.actualCompletion} days`}</p>
+    <p>Task Status: {task.status}</p>
+    <p>Task Health: {!task.health ? "No completion Date given": task.health}</p>
 </div>
 );
 };

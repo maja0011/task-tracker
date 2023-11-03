@@ -5,7 +5,8 @@ const AddTask = ({addTask}) => {
         text: "",
         description:"",
         estimationDate:"",
-        startDate: ""
+        startDate: "",
+        completionDate:"",
     });
   
 
@@ -29,20 +30,23 @@ const AddTask = ({addTask}) => {
             alert("Start date must be lesser than estimation date");
             return
           }
+         
         
 
         addTask({
             text: task.text,
             description: task.description,
             estimationDate: task.estimationDate,
-            startDate: task.startDate
+            startDate: task.startDate,
+            completionDate: task.completionDate
         });
 
         setTask({
             text: "",
             description:"",
             estimationDate:"",
-            startDate: ""
+            startDate: "",
+            completionDate:""
         });
     };
 
@@ -97,6 +101,18 @@ const AddTask = ({addTask}) => {
                 type="date"
                 placeholder="Start Date"
                 value={task.startDate}
+                onChange={handleChange}
+                />
+
+            </div>
+
+            <div className="form-control">
+                <label>Actual Completion Date</label>
+                <input
+                name="completionDate"
+                type="date"
+                placeholder="Completion Date"
+                value={task.completionDate}
                 onChange={handleChange}
                 />
 
