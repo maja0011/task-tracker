@@ -6,13 +6,15 @@ const Task = ({task, handleDelete}) => {
     <div 
     className={`task`}>
     <h3>
-        {task.text}{" "}
+        Task Name: {task.text}{" "}
         <FaTimes
         style={{color: "red", cursor: "pointer"}}
         onClick={()=> handleDelete(task.id)}
         />
     </h3>
-    <p>{task.day}</p>
+    <p>Task Description: {task.description}</p>
+    <p>Task Estimation Date: {task. estimationDate}</p>
+    <p>Task Start Date: {task.startDate}</p>
 </div>
 );
 };
