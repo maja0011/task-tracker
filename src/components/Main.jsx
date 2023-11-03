@@ -1,5 +1,7 @@
 import React from "react";
 import { useState,useEffect } from "react";
+import AddTask from "./AddTask";
+import Tasks from "./Tasks";
 import '../index.css'
 
 
@@ -58,13 +60,13 @@ function Main() {
 
                 </button>
             </header>
-            {/* {showAddButton && <AddTask addTask ={addTask} />} */}
-            {tasks.length >0 ? (
-                // <Tasks
-                // tasks ={tasks}
-                // onDelete = {deleteTask}
-                // />
-                "no"
+            {showAddButton && <AddTask addTask ={addTask} />}
+            {tasks.length > 0 ? (
+                <Tasks
+                tasks ={tasks}
+                onDelete = {deleteTask}
+                />
+                
             ):(
                 "No Tasks to Show"
             )}
