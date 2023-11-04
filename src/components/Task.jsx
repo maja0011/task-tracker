@@ -4,13 +4,21 @@ import {FaTimes,FaEdit} from "react-icons/fa";
 const Task = ({task, handleDelete}) => {
     return(
     <div 
-    className={`task`}>
+    className="task">
     <h3>
-        Task Name: {task.text}{" "}
+        <div className="left">Task Name: {task.text}{" "}</div>
+        
+        <div className="right">
+        <FaEdit
+        style= {{color: "blue", cursor: "pointer"}}
+        
+        />
         <FaTimes
         style={{color: "red", cursor: "pointer"}}
         onClick={()=> handleDelete(task.id)}
         />
+        </div>
+       
     </h3>
     <p>Task Description: {task.description}</p>
     <p>Task Estimation Date: {task.estimationDate}</p>

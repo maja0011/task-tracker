@@ -10,6 +10,7 @@ const Tasks = ({tasks, onDelete}) => {
                 key={task.id}
                 task={task}
                 handleDelete={onDelete}
+                
                 />
             );
         })}

@@ -2,6 +2,7 @@ import React from "react";
 import { useState,useEffect } from "react";
 import AddTask from "./AddTask";
 import Tasks from "./Tasks";
+import SearchIcon from '../search.svg'
 import '../index.css'
 
 
@@ -21,6 +22,8 @@ function Main() {
 
     //use state for adding tasks
     const [tasks, setTasks] = useState(getLocalStorage());
+
+    const [searchTerm, setSearchTerm] = useState('');
 
    
     
@@ -95,10 +98,22 @@ function Main() {
         setTasks(tasks.filter((task) => task.id !== id));
     };
 
+    const taskSearch = (taskName) =>{
+        if(taskName.length > 0){
+            setTasks(tasks.filter((task) => task.text.includes(taskName)));
+        }
+
+    };
+
+    // const editTaskFunction = (id) => {
+    // setTasks(tasks.map(task => task.id === id ? {...task, isEditing: !task.isEditing} : task))
+    // };
+
     //Show Add form/button
     const showTaskForm = () => {
         setShowAddButton(!showAddButton);
     };
+
    
     
 
@@ -108,7 +123,22 @@ function Main() {
 
     return (
         <div className="container">
+             <div className='search'>
+                <input
+                type="text"
+                    placeholder='Search for Tasks'
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                />
+                
+                <img
+                    src={SearchIcon}
+                    alt="an icon for searching"
+                    onClick={() => taskSearch(searchTerm)}
+                />
+            </div>
             <header className="header">
+
                 <h1>Task Tracker</h1>
                 <button className="btn"
                 style ={{backgroundColor:showAddButton ? "red" : "green"}}
@@ -123,6 +153,7 @@ function Main() {
                 <Tasks
                 tasks ={tasks}
                 onDelete = {deleteTask}
+               
                 />
                 
             ):(
