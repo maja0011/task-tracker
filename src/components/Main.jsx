@@ -22,7 +22,7 @@ function Main() {
 
     //use state for adding tasks
     const [tasks, setTasks] = useState(getLocalStorage());
-
+    //use state for keeping track of search term
     const [searchTerm, setSearchTerm] = useState('');
 
    
@@ -34,7 +34,7 @@ function Main() {
         const taskEstimationDate = new Date(task.estimationDate);
         const taskStartDate = new Date(task.startDate);
 
-
+        //various date conversions to calculate other variables
         const taskCompletionDate = new Date(task.completionDate);
         let currentDate =new Date().toJSON().slice(0, 10);
         let status;
@@ -81,7 +81,7 @@ function Main() {
             actualCompletion = null;
         }
 
-        //adding new id generated to the task array
+        //adding new id to task object then added to the task array
         const newTask = {
             id: id,
             estimateToCompletion: estimateToCompletion,
@@ -93,11 +93,12 @@ function Main() {
         setTasks([...tasks, newTask]);
     }
 
-    //function for deleting a task
+    //function for deleting a task using task ID
     const deleteTask = (id) => {
         setTasks(tasks.filter((task) => task.id !== id));
     };
 
+    //function for searching for task using it's name
     const taskSearch = (taskName) =>{
         if(taskName.length > 0){
             setTasks(tasks.filter((task) => task.text.includes(taskName)));
@@ -116,7 +117,7 @@ function Main() {
 
    
     
-
+    // use effect used to retrieve information from local storage at load
     useEffect(() => {
         localStorage.setItem("myTasks", JSON.stringify(tasks));
     }, [tasks]);
@@ -128,27 +129,28 @@ function Main() {
                 type="text"
                     placeholder='Search for Tasks'
                     value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
+                    onChange={(e) => setSearchTerm(e.target.value)} //keeping track of user input in searchbar
                 />
                 
                 <img
                     src={SearchIcon}
                     alt="an icon for searching"
-                    onClick={() => taskSearch(searchTerm)}
+                    onClick={() => taskSearch(searchTerm)} //onclick for calling the searchTerm function
                 />
             </div>
             <header className="header">
 
                 <h1>Task Tracker</h1>
                 <button className="btn"
-                style ={{backgroundColor:showAddButton ? "red" : "green"}}
+                style ={{backgroundColor:showAddButton ? "red" : "green"}} //switching button color based on showaddbutton being true or false
                 onClick={showTaskForm}
                 > {showAddButton ? "Close" : "Add"}
 
 
                 </button>
             </header>
-            {showAddButton && <AddTask addTask ={addTask} />}
+            {/* calling addtask class to add new task when add button is clicked */}
+            {showAddButton && <AddTask addTask ={addTask} />} 
             {tasks.length > 0 ? (
                 <Tasks
                 tasks ={tasks}

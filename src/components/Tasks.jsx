@@ -4,6 +4,7 @@ import Task from "./Task";
 const Tasks = ({tasks, onDelete}) => {
     return (
         <>
+        {/* Map through all tasks to retrieve all buil tasks */}
         {tasks.map((task) => {
             return (
                 <Task

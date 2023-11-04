@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 
+
 const AddTask = ({addTask}) => {
+    //usestate for creating task object as well as setting values to it
     const [task, setTask]= useState({
         text: "",
         description:"",
@@ -9,7 +11,7 @@ const AddTask = ({addTask}) => {
         completionDate:"",
     });
   
-
+    //handlechange for keeping track of user input
     const handleChange = (e) => {
         const {name, value} = e.target;
         setTask((prevTask) => {
@@ -19,7 +21,7 @@ const AddTask = ({addTask}) => {
             };
         });
     };
-
+    //handles validations while creating a task
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!task.text) {
@@ -32,7 +34,7 @@ const AddTask = ({addTask}) => {
           }
          
         
-
+          //adds data from form to task object
         addTask({
             text: task.text,
             description: task.description,
@@ -41,6 +43,7 @@ const AddTask = ({addTask}) => {
             completionDate: task.completionDate
         });
 
+        //resets's parameters of variables to accept new ones
         setTask({
             text: "",
             description:"",
@@ -51,6 +54,7 @@ const AddTask = ({addTask}) => {
     };
 
     return (
+        //form used to retrieve information for Task objects
         <form className="add-form" onSubmit= {handleSubmit}>
             <div className="form-control">
                 <label>Task Name</label>
