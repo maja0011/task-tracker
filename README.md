@@ -1,3 +1,6 @@
+##Live view of project available on
+https://maja0011.github.io/task-tracker/
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
